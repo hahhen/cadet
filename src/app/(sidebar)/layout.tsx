@@ -1,5 +1,4 @@
 import {
-    SidebarInset,
     SidebarProvider,
     SidebarTrigger,
 } from "@/components/ui/sidebar"
@@ -14,7 +13,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Separator } from "@/components/ui/separator";
 
-export default function Layout({ children, }: Readonly<{ children: React.ReactNode; }>) {
+export default function Layout({ children }: Readonly<{ children: React.ReactNode; }>) {
     return (
         <SidebarProvider>
             <AppSidebar />
@@ -41,6 +40,7 @@ export default function Layout({ children, }: Readonly<{ children: React.ReactNo
                         </Breadcrumb>
                     </div>
                 </header>
+                {children}
             </div>
         </SidebarProvider>
     );
