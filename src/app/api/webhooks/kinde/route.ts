@@ -13,11 +13,11 @@ export async function POST(req: Request) {
       return new NextResponse('Corpo da requisição vazio.', { status: 400 });
     }
 
-    // // 2. Verificar e decodificar o JWT
-    // const KINDE_ISSUER_URL = process.env.KINDE_ISSUER_URL;
-    // if (!KINDE_ISSUER_URL) {
-    //   throw new Error('A variável de ambiente KINDE_ISSUER_URL não está definida.');
-    // }
+    // 2. Verificar e decodificar o JWT
+    const KINDE_ISSUER_URL = process.env.KINDE_ISSUER_URL;
+    if (!KINDE_ISSUER_URL) {
+      throw new Error('A variável de ambiente KINDE_ISSUER_URL não está definida.');
+    }
 
     // // O JWKS (JSON Web Key Set) é um conjunto de chaves públicas usado para verificar a assinatura
     // const JWKS = createRemoteJWKSet(
