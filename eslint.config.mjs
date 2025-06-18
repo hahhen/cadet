@@ -24,6 +24,7 @@ const eslintConfig = [
       '@typescript-eslint/no-wrapper-object-types': 'off',
       '@typescript-eslint/no-unnecessary-type-constraints': 'off',
       '@typescript-eslint/no-require-imports': 'off',
+      '@typescript-eslint/no-unnecessary-type-constraints': 'off',
     }
   }),
 ];
