@@ -24,13 +24,13 @@ export async function POST(req: Request) {
       new URL(`${KINDE_ISSUER_URL}/.well-known/jwks.json`)
     );
 
-    // // jwtVerify faz tudo: verifica a assinatura, o tempo de expiração e o emissor.
-    // // Se algo estiver errado, ele lançará um erro.
-    // const { payload } = await jwtVerify(jwt, JWKS, {
-    //   issuer: KINDE_ISSUER_URL,
-    //   // Se você definiu uma "audience" no Kinde, descomente e adicione a linha abaixo
-    //   // audience: 'sua-audience-aqui', 
-    // });
+    // jwtVerify faz tudo: verifica a assinatura, o tempo de expiração e o emissor.
+    // Se algo estiver errado, ele lançará um erro.
+    const { payload } = await jwtVerify(jwt, JWKS, {
+      issuer: KINDE_ISSUER_URL,
+      // Se você definiu uma "audience" no Kinde, descomente e adicione a linha abaixo
+      // audience: 'sua-audience-aqui', 
+    });
     
     // console.log("JWT verificado com sucesso. Payload:", payload);
 
