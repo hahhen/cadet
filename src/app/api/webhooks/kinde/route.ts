@@ -19,10 +19,10 @@ export async function POST(req: Request) {
       throw new Error('A variável de ambiente KINDE_ISSUER_URL não está definida.');
     }
 
-    // // O JWKS (JSON Web Key Set) é um conjunto de chaves públicas usado para verificar a assinatura
-    // const JWKS = createRemoteJWKSet(
-    //   new URL(`${KINDE_ISSUER_URL}/.well-known/jwks.json`)
-    // );
+    // O JWKS (JSON Web Key Set) é um conjunto de chaves públicas usado para verificar a assinatura
+    const JWKS = createRemoteJWKSet(
+      new URL(`${KINDE_ISSUER_URL}/.well-known/jwks.json`)
+    );
 
     // // jwtVerify faz tudo: verifica a assinatura, o tempo de expiração e o emissor.
     // // Se algo estiver errado, ele lançará um erro.
