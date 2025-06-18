@@ -32,30 +32,30 @@ export async function POST(req: Request) {
       // audience: 'sua-audience-aqui', 
     });
     
-    // console.log("JWT verificado com sucesso. Payload:", payload);
+    console.log("JWT verificado com sucesso. Payload:", payload);
 
-    // // 3. Processar o evento
-    // const eventType = payload.type as string;
+    // 3. Processar o evento
+    const eventType = payload.type as string;
 
-    // if (eventType === 'user.created') {
-    //   // Extrai os dados do usuário do payload do JWT
-    //   const userData = (payload.data as any).user;
+    if (eventType === 'user.created') {
+      // Extrai os dados do usuário do payload do JWT
+      const userData = (payload.data as any).user;
 
-    //   if (!userData || !userData.id) {
-    //     return new NextResponse('Dados do usuário não encontrados no payload do JWT.', { status: 400 });
-    //   }
+      if (!userData || !userData.id) {
+        return new NextResponse('Dados do usuário não encontrados no payload do JWT.', { status: 400 });
+      }
 
-    //   const newUserData = await Users.getUserData(userData.id)
+      const newUserData = await Users.getUserData(userData.id)
       
-    //   // 4. Conectar ao MongoDB e inserir o usuário
-    //   const result = await createUser({
-    //     kindeId: userData.id, email: userData.email, username: userData.username,
-    //     firstName: userData.first_name, lastName: userData.last_name, picture: newUserData.picture});
+      // 4. Conectar ao MongoDB e inserir o usuário
+      const result = await createUser({
+        kindeId: userData.id, email: userData.email, username: userData.username,
+        firstName: userData.first_name, lastName: userData.last_name, picture: newUserData.picture});
       
-    //   console.log(`Usuário ${result.email} cadastrado/atualizado no MongoDB com sucesso.`);
-    // } else {
-    //   console.log(`Evento recebido, mas não processado: ${eventType}`);
-    // }
+      console.log(`Usuário ${result.email} cadastrado/atualizado no MongoDB com sucesso.`);
+    } else {
+      console.log(`Evento recebido, mas não processado: ${eventType}`);
+    }
 
     // // 5. Retornar uma resposta de sucesso para o Kinde
     return new NextResponse('Webhook JWT recebido e verificado com sucesso.', { status: 200 });
