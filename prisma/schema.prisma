@@ -18,10 +18,13 @@ model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   kindeId   String   @unique
   username  String   @unique
-  email     String   
+  email     String   @unique
   firstName String?
   lastName  String?
   picture   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  codeForces Json? @db.Json
+  hackerRank Json? @db.Json
+  github     String?
 }

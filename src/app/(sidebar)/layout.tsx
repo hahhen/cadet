@@ -40,7 +40,9 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
                         </Breadcrumb>
                     </div>
                 </header>
-                {children}
+                <main className="p-4">
+                    {children}
+                </main>
             </div>
         </SidebarProvider>
     );

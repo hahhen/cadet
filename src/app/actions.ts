@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache"
 
 //READ
 export async function getUsers() {
-    try{
+    try {
         const users = await prisma.user.findMany({
             orderBy: {
                 createdAt: "desc"
@@ -19,7 +19,19 @@ export async function getUsers() {
     }
 }
 
-export async function createUser({kindeId, email, username, firstName, lastName, picture}:{kindeId: string, email: string, username: string, firstName: string, lastName: string, picture?: string}) {
+export async function getUserQuery(props: { kindeId?: string, email?: string, username?: string, firstName?: string, lastName?: string, picture?: string, id?: string }) {
+    try {
+        const user = await prisma.user.findFirst({
+            where: props
+        })
+        return user
+    }catch (error) {
+        console.error("Error fetching user:", error)
+        return null
+    }
+}
+
+export async function createUser({ kindeId, email, username, firstName, lastName, picture }: { kindeId: string, email: string, username: string, firstName: string, lastName: string, picture?: string }) {
     try {
         const user = await prisma.user.create({
             data: {
